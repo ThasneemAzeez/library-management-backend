@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Navigation from './Navigation'
+import axios from 'axios'
 
 const Form = () => {
     const[data,setData]=useState({
@@ -15,7 +16,19 @@ const Form = () => {
     }
     const readValue=()=>{
         console.log(data)
+        axios.post("http://localhost:8081/add",data).then(
+            (response)=>{
+                    console.log(response.data)
+                    if (response.data.status=="success") {
+                        alert("succesfully added")
+                        
+                    } else {
+                        alert("eroor")
+                    }
+            }
+        ).catch().finally()
     }
+    
   return (
     <div>
         <Navigation/>
